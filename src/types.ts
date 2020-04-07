@@ -1,19 +1,21 @@
 import * as React from 'react';
 
-export type Render = (
-  component: React.ReactElement,
-  makeProps: ({
-    onReady,
-    onError,
-  }: {
-    onReady: () => void;
-    onError: () => void;
-  }) => { [prop: string]: any }
-) => Promise<void>;
+export type Render = <T>({
+  Component,
+  waitFor,
+  onError,
+}: {
+  Component: React.ReactElement;
+  waitFor?: string;
+  onError?: string;
+}) => Promise<React.MutableRefObject<T>['current']>;
 
 export type Test = (render: Render) => (tester: Tester) => void;
 
 type Jasmine = typeof jasmine;
+
+export type Suite = jasmine.Suite;
+export type Spec = jasmine.Spec;
 
 export interface Tester extends Jasmine {
   root: jasmine.Suite;

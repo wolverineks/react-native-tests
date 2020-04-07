@@ -4,7 +4,7 @@ import jasmineModule from 'jasmine-core/lib/jasmine-core/jasmine';
 
 import { Tester, Test, jasmine } from './types';
 
-export const useJasmine = () => {
+export const useTester = () => {
   const [status, setStatus] = React.useState<Tester['status']>('running');
   const [overallStatus, setOverallStatus] = React.useState<string>();
   const [jasmineCore] = React.useState(() => jasmineModule.core(jasmineModule));
