@@ -11,11 +11,9 @@ npm install react-native-tests
 ## Usage
 
 ```js
-import Tests from "react-native-tests";
+import Tests from 'react-native-tests';
 
-// ...
-
-const deviceName = await Tests.getDeviceName();
+<TestSuite tests={tests} />;
 ```
 
 ## License

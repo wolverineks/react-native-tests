@@ -1,9 +1,3 @@
-import { NativeModules } from 'react-native';
+import { TestSuite } from './TestSuite';
 
-type TestsType = {
-  getDeviceName(): Promise<string>;
-};
-
-const { Tests } = NativeModules;
-
-export default Tests as TestsType;
+export default TestSuite;
