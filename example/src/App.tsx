@@ -1,23 +1,28 @@
 import * as React from 'react';
 import TestSuite from 'react-native-tests';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View, Text } from 'react-native';
 
 export default function App() {
   return (
     <SafeAreaView>
       <TestSuite
         tests={[
-          () => ({ describe, it, expect }) => {
-            describe('example test 1', () => {
+          render => ({ describe, it, expect }) => {
+            describe('simple example', () => {
               it('should pass', async () => {
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 expect(1).toBe(1);
               });
             });
 
-            describe('example test 2', () => {
+            describe('example with component', () => {
               it('should also pass', async () => {
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                const component = await render<FooHandle>({
+                  Component: <Foo />,
+                  waitFor: 'onLayout',
+                });
+                const result = component.bar();
+                expect(result).toBe(123);
                 expect(1).toBe(1);
               });
             });
@@ -27,3 +32,19 @@ export default function App() {
     </SafeAreaView>
   );
 }
+
+interface FooHandle {
+  bar: () => number;
+}
+
+const Foo = React.forwardRef<FooHandle, {}>((props, ref) => {
+  React.useImperativeHandle(ref, () => ({
+    bar: () => 123,
+  }));
+
+  return (
+    <View {...props}>
+      <Text>Hello, World!</Text>
+    </View>
+  );
+});
