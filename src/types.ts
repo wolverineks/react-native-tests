@@ -10,7 +10,7 @@ export type Render = <T>({
   onError?: string;
 }) => Promise<React.MutableRefObject<T>['current']>;
 
-export type Test = (render: Render) => (tester: Tester) => void;
+export type Test = (tester: Tester, render: Render) => void;
 
 type Jasmine = typeof jasmine;
 
@@ -19,10 +19,10 @@ export type Spec = jasmine.Spec;
 
 export interface Tester extends Jasmine {
   root: jasmine.Suite;
-  runTests: (...tests: ReturnType<Test>[]) => void;
+  runTests: jasmine.Env['execute'];
   status: 'idle' | 'running' | 'done';
   result: string | undefined;
-  registerTests: (tests: ReturnType<Test>[]) => void;
+  registerTests: (tests: Test[]) => void;
   reset: () => void;
   afterAll: typeof afterAll;
   afterEach: typeof afterEach;

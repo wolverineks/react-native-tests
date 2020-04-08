@@ -10,7 +10,7 @@ describe('TestSuite', () => {
       <SafeAreaView>
         <TestSuite
           tests={[
-            () => ({ describe, it, expect }) => {
+            ({ describe, it, expect }) => {
               describe('example test 1', () => {
                 it('should pass', async () => {
                   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -40,7 +40,7 @@ describe('TestSuite', () => {
       <SafeAreaView>
         <TestSuite
           tests={[
-            () => ({ describe, it, expect }) => {
+            ({ describe, it, expect }) => {
               describe('failing test 1', () => {
                 it('should not pass', async () => {
                   await new Promise(resolve => setTimeout(resolve, 1000));

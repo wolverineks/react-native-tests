@@ -27,7 +27,7 @@ export const TestSuite: React.FC<{ tests: Test[] }> = ({ tests }) => {
       });
     };
 
-    registerTests(tests.map(_test => _test(render)));
+    registerTests(tests.map(_test => tester => _test(tester, render)));
     runTests();
   }, [registerTests, runTests, tests]);
 

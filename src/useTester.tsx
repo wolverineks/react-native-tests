@@ -2,7 +2,7 @@ import * as React from 'react';
 // @ts-ignore
 import jasmineModule from 'jasmine-core/lib/jasmine-core/jasmine';
 
-import { Tester, Test, jasmine } from './types';
+import { Tester, jasmine } from './types';
 
 export const useTester = () => {
   const [status, setStatus] = React.useState<Tester['status']>('running');
@@ -31,7 +31,7 @@ export const useTester = () => {
   }, [jasmineEnv]);
 
   const registerTests = React.useCallback(
-    (tests: ReturnType<Test>[]) => {
+    (tests: ((tester: Tester) => void)[]) => {
       tests.forEach(testSuite =>
         testSuite({ ...jasmineCore, ...jasmineInterface })
       );
@@ -47,6 +47,5 @@ export const useTester = () => {
     result: overallStatus,
     runTests: jasmineEnv.execute,
     registerTests,
-    ...jasmineInterface,
   };
 };

@@ -7,7 +7,7 @@ export default function App() {
     <SafeAreaView>
       <TestSuite
         tests={[
-          render => ({ describe, it, expect }) => {
+          ({ describe, it, expect }, render) => {
             describe('simple example', () => {
               it('should pass', async () => {
                 await new Promise(resolve => setTimeout(resolve, 1000));
