@@ -43,6 +43,7 @@ export const TestSuite: React.FC<{ tests: Test[] }> = ({ tests }) => {
 
   return (
     <FlatList
+      removeClippedSubviews={false}
       ListHeaderComponent={
         <Header status={status} result={result || '-------'} />
       }
