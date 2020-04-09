@@ -2,9 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { jasmine } from './types';
 
-export const Portal: React.FC = ({ children }) => (
-  <View style={{ position: 'absolute', opacity: 0 }}>{children}</View>
-);
+export const Portal: React.FC = ({ children }) => <View>{children}</View>;
 
 export const Header: React.FC<{ status: string; result: string }> = ({
   status,

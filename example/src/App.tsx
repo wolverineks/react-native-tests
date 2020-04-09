@@ -44,7 +44,7 @@ const Foo = React.forwardRef<FooHandle, {}>((props, ref) => {
 
   return (
     <View {...props}>
-      <Text>Hello, World!</Text>
+      <Text>Your component goes here!</Text>
     </View>
   );
 });

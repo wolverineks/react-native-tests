@@ -13,13 +13,12 @@ export const useTestSuite = (tests: Test[]) => {
   const ref = React.useRef();
 
   React.useEffect(() => {
-    const render: Render = ({ Component, waitFor, onError }) => {
-      return new Promise((resolve, reject) => {
+    const render: Render = ({ Component, waitFor }) => {
+      return new Promise(resolve => {
         const cloneProps = {
           ref,
           key: Math.random(), // to prevent reusing component across multiple tests
           ...(waitFor && { [waitFor]: () => resolve(ref.current) }),
-          ...(onError && { [onError]: reject }),
         };
         const clone = React.cloneElement(Component, cloneProps);
 

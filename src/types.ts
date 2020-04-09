@@ -3,11 +3,9 @@ import * as React from 'react';
 export type Render = <T>({
   Component,
   waitFor,
-  onError,
 }: {
   Component: React.ReactElement;
   waitFor?: string;
-  onError?: string;
 }) => Promise<React.MutableRefObject<T>['current']>;
 
 export type Test = (tester: Tester, render: Render) => void;
